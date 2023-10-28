@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffcccc;
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
+
+
+
+        header {
+            background-color: #ffcccc;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        marquee {
+            font-size: 24px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            background-color: #ff6666;
+            text-align: center;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        section {
+            padding: 20px;
+        }
+
+        section h2 {
+            color: #ff3333;
+        }
+
+        .product {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px;
+            text-align: center;
+        }
+
+        .product img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .smaller-logo {
+            max-width: 150px;
+            height: auto;
+            animation: logoAnimation 3s infinite alternate ease-in-out;
+            transform-origin: center;
+        }
+
+        footer {
+            background-color: #ff3333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+
+        /* CSS Animation */
+        button {
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #ff3333;
+        }
+
+        /* Shopping Cart Styles */
+        #cart {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        @keyframes checkmark {
+        from {
+            opacity: 0;
+            transform: scale(0.5);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    .added-to-cart {
+        animation: checkmark 0.5s ease;
+    }
+    
+    @keyframes logoAnimation {
+        0% {
+        transform: scale(1);
+            content: url('content://com.android.providers.media.documents/document/image%3A1000012405');
+        }
+        50% {
+        transform: scale(1.5);
+            content: url('content://com.android.providers.media.documents/document/image%3A1000012412');
+        }
+        100% {
+        transform: scale(1);
+            content: url('content://com.android.providers.media.documents/document/image%3A1000012405');
+        }
+    }
+    
+    
+    
+    </style>
+</head>
+
+<body>
+    <header>
+        <img class="smaller-logo animated" src="content://com.android.providers.media.documents/document/image%3A1000012405" alt="Your Milk Tea Shop Logo">
+        <marquee behavior="scroll" direction="left" scrollamount="15">
+            <h1>Welcome to Cove Tea</h1>
+        </marquee>
+        <p>Enjoy the Best Milk Tea in Town</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#products">Menu</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="products">
+        <h2>Our Menu</h2>
+        <div class="product">
+            <img src="content://com.android.providers.media.documents/document/image%3A1000012406" alt="Classic Milk Tea">
+            <h3>Classic Milk Tea</h3>
+            <p>Price: Php 100.00</p>
+            <button onclick="addToCart('Classic Milk Tea', 100.00)">Add to Cart</button>
+        </div>
+
+        <div class="product">
+            <img src="content://com.android.providers.media.documents/document/image%3A1000012408" alt="Taro Milk Tea">
+            <h3>Taro Milk Tea</h3>
+            <p>Price: Php 120.00</p>
+            <button onclick="addToCart('Taro Milk Tea', 120.00)">Add to Cart</button>
+        </div>
+
+        <div class="product">
+            <img src="content://com.android.providers.media.documents/document/image%3A1000012409" alt="Matcha Milk Tea">
+            <h3>Matcha Milk Tea</h3>
+            <p>Price: Php 110.00</p>
+            <button onclick="addToCart('Matcha Milk Tea', 110.00)">Add to Cart</button>
+        </div>
+
+        <div class="product">
+            <img src="content://com.android.providers.media.documents/document/image%3A1000012410" alt="Honeydew Milk Tea">
+            <h3>Honeydew Milk Tea</h3>
+            <p>Price: Php 130.00</p>
+            <button onclick="addToCart('Honeydew Milk Tea', 130.00)">Add to Cart</button>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2>About Us</h2>
+        <p>We are your go-to destination for the most delicious milk tea in town. Discover a world of flavors and quality ingredients. <a href="#contact">Contact us</a> to learn more.</p>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>If you have any questions or need assistance, feel free to contact us:</p>
+        <p>Email: <a href="mailto:covetea@milkteashop.com">covetea@milkteashop.com</a></p>
+        <p>Phone: 09617619605</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 Cove Tea </p>
+    </footer>
+
+    <!-- Shopping Cart -->
+    <div id="cart">
+        <h2>Shopping Cart</h2>
+        <ul id="cart-items">
+        </ul>
+        <p>Total: Php <span id="cart-total">0.00</span></p>
+        <button onclick="checkout()">Checkout</button>
+    </div>
+
+    <script>
+        let cart = [];
+        let cartTotal = 0;
+
+        function addToCart(productName, price) {
+            cart.push({ name: productName, price: price });
+            cartTotal += price;
+
+    // Find the product image element
+    const productImage = document.querySelector(`[alt="${productName}"]`);
+    
+    // Add the "added-to-cart" class to trigger the animation
+    productImage.classList.add('added-to-cart');
+
+            updateCart();
+        }
+
+        function updateCart() {
+            const cartItems = document.getElementById('cart-items');
+            const total = document.getElementById('cart-total');
+            cartItems.innerHTML = '';
+            cart.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = `${item.name} - ${formatAsCurrency(item.price)}`;
+                cartItems.appendChild(li);
+            });
+            total.textContent = formatAsCurrency(cartTotal);
+        }
+
+        function checkout() {
+            const confirmation = confirm(`Proceed to checkout? Total: ${formatAsCurrency(cartTotal)}`);
+            if (confirmation) {
+                alert('Checkout successful! Thank you for your order.');
+                cart = [];
+                cartTotal = 0;
+                updateCart();
+            } else {
+                alert('Checkout canceled.');
+            }
+        }
+
+        function formatAsCurrency(number) {
+            return `Php ${number.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>
