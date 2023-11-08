@@ -204,6 +204,7 @@
         </ul>
         <p>Total: Php <span id="cart-total">0.00</span></p>
         <button onclick="checkout()">Checkout</button>
+        <button onclick="clearCart()">Clear Cart</button>
     </div>
 
     <script>
@@ -245,6 +246,14 @@
             } else {
                 alert('Checkout canceled.');
             }
+        }
+
+        function clearCart() {
+        const confirmation = confirm('Are you sure you want to clear your cart?');
+        if (confirmation) {
+            cart = [];
+            cartTotal = 0;
+            updateCart();
         }
 
         function formatAsCurrency(number) {
